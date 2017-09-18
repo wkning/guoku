@@ -1,0 +1,111 @@
+<template>
+	<div id="Tabbar" :style="objStyle">
+		<ul>
+			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)" v-bind:class="{ active: index==selectIndex }" ><span :class=item.icon></span></li>
+		</ul>
+	</div>
+</template>
+
+<script>
+	export default{
+		data(){
+			return {
+				tabbarList:[
+					{
+						title:'信息',
+						path:'/selection',
+						icon:'icon-star-empty'
+					},
+					{
+						title:'发现',
+						path:'/discover',
+						icon:'icon-compass2'
+					},
+					{
+						title:'登录',
+						path:'/login',
+						icon:'icon-bell'
+					},
+					{
+						title:'设置',
+						path:'/setting',
+						icon:'icon-cog'
+					},
+				],
+				selectIndex:'1',
+				objStyle:{}
+			}
+		},
+		methods:{
+			pushTo(path,index){
+				this.selectIndex=index
+				this.$router.push(path);
+				if(index==2){
+					this.objStyle={
+						bottom:'-45px'
+					}
+					console.log(this.objStyle)
+				}else{
+					this.objStyle={
+					}
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	#Tabbar{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 44px;
+		border-top: 1px solid #D7D6D6;
+		opacity: 0.9;
+		background-color: #fff;
+		ul{
+			display: flex;
+			li{
+				flex: 1;
+				line-height: 44px;
+				text-align: center;
+				font-size: 25px;
+			}
+		}
+	}
+	.active{
+		color: red;
+	}
+	@font-face {
+		  font-family: 'icomoon';
+		  src:url('fonts/icomoon.ttf');
+		  font-weight: normal;
+		  font-style: normal;
+		}
+
+		[class^="icon-"], [class*=" icon-"] {
+		  /* use !important to prevent issues with browser extensions that change fonts */
+		  font-family: 'icomoon' !important;
+		  speak: none;
+		  font-style: normal;
+		  font-weight: normal;
+		  font-variant: normal;
+		  text-transform: none;
+		  line-height: 1;
+		  -webkit-font-smoothing: antialiased;
+		  -moz-osx-font-smoothing: grayscale;
+		}
+		.icon-compass2:before {
+		  content: "\e94a";
+		}
+		.icon-bell:before {
+		  content: "\e951";
+		}
+		.icon-cog:before {
+		  content: "\e994";
+		}
+		.icon-star-empty:before {
+		  content: "\e9d7";
+		}
+</style>
