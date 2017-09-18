@@ -9,6 +9,7 @@ import Login from '@/components/Login/Login'
 import Setting from '@/components/Setting/Setting'
 import Goods from '@/components/Selection/Goods'
 import Picture from '@/components/Selection/Picture'
+import Detail from '@/components/Commons/Detail'
 
 export default new Router({
   routes: [
@@ -42,6 +43,10 @@ export default new Router({
    		path:'/setting',
    		component:Setting,
    	},
+      {
+         path:'/detail',
+         component:Detail
+      }
   ]
 })
 

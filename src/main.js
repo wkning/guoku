@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import axios from 'axios'
 import router from './router'
+import store from './Vuex/Store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ if (true) {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

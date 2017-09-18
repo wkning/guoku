@@ -2,7 +2,7 @@
 	<div id="hotGoods">
 		<ul>
 			<li v-for="(item,index) in entities" :key="index">
-				<div><img :src=item.entity.chief_image></div>
+				<div  @click="detail(item.entity.entity_id)"><img :src=item.entity.chief_image></div>
 				<div>
 					<span>{{item.entity.brand}}</span>
 					<span>{{item.entity.title}}</span>
@@ -14,7 +14,16 @@
 </template>
 <script>
 	export default{
-		props:["entities"]
+		props:["entities"],
+		methods:{
+			detail(id){
+				var _this=this;
+				this.$http.get(window.apiAddress+"/api/entity?id="+id).then(function(response){
+				_this.$store.state.detailData=response.data
+				_this.$router.push("/detail")
+				})				
+			}
+		}
 	}
 </script>
 

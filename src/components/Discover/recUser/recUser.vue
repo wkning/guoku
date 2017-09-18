@@ -19,7 +19,7 @@
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 require('swiper/dist/css/swiper.css') 
 	export default{
-		 components: {
+		components: {
 			    swiper,
 			    swiperSlide
 		},
