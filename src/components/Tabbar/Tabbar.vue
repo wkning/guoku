@@ -1,5 +1,5 @@
 <template>
-	<div id="Tabbar" :style="objStyle">
+	<div id="Tabbar">
 		<ul>
 			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)" v-bind:class="{ active: index==selectIndex }" ><span :class=item.icon></span></li>
 		</ul>
@@ -13,7 +13,7 @@
 				tabbarList:[
 					{
 						title:'信息',
-						path:'/selection',
+						path:'/selection/goods',
 						icon:'icon-star-empty'
 					},
 					{
@@ -33,22 +33,12 @@
 					},
 				],
 				selectIndex:'1',
-				objStyle:{}
 			}
 		},
 		methods:{
 			pushTo(path,index){
 				this.selectIndex=index
 				this.$router.push(path);
-				if(index==2){
-					this.objStyle={
-						bottom:'-45px'
-					}
-					console.log(this.objStyle)
-				}else{
-					this.objStyle={
-					}
-				}
 			}
 		}
 	}
@@ -64,6 +54,7 @@
 		border-top: 1px solid #D7D6D6;
 		opacity: 0.9;
 		background-color: #fff;
+		z-index: 1;
 		ul{
 			display: flex;
 			li{

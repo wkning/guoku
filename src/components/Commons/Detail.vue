@@ -1,5 +1,9 @@
 <template>
 	<div id="Detail">
+			<div class="turnBack">
+				<span @click="turnBack">＜</span>
+				<span @click="share">▫▫▫</span>
+			</div>
 			<swiper class="detailAD">
 				<swiper-slide :options="swiperOption" v-for="(item,index) in detailList.detail_images" :key="index">
 			  		<img :src=item>
@@ -40,6 +44,13 @@
 				<span v-for="(item,index) in recommendation" :key="index">
 					<img :src=item.chief_image>
 				</span>				
+			</div>
+			<div  class="bg" v-if="show">
+				<div class="share" >
+					<span>分享</span>
+					<span>1111</span>
+					<span @click="showShare">取消</span>
+				</div>
 			</div>	    		
 	</div>
 </template>	
@@ -56,18 +67,86 @@ require('swiper/dist/css/swiper.css')
 				detailList:this.$store.state.detailData.entity,
 				detailnode:this.$store.state.detailData.note_list,
 				recommendation:this.$store.state.detailData.recommendation,
+				show:false,
 				swiperOption: {
 				    pagination: '.swiper-pagination',
 				    paginationClickable: true
 				}
+			}
+		},
+		methods:{
+			turnBack(){
+				this.$router.go(-1)
+			},
+			share(){
+				this.show=true;
+			},
+			showShare(){
+				this.show=false;
 			}
 		}
 	}
 </script>
 <style lang="scss">
 	#Detail{
+		.bg{			
+			.share{
+			position:fixed;
+			bottom:0;
+			left: 0;
+			right: 0;
+			background-color:white;
+			z-index: 3;
+			display: flex;
+			flex-direction: column;
+				span{
+					flex: 1;
+				}
+				span:nth-child(1){
+					text-align: center;
+					height: 50px;
+					line-height: 50px;
+				}
+				span:nth-child(2){
+					text-align: center;
+					height: 200px;
+				}
+				span:nth-child(3){
+					text-align: center;
+					height: 50px;
+					line-height: 50px;
+				}
+			}
+		}
+		.turnBack{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			display: flex;
+			justify-content: space-between;
+			z-index: 2;
+			span:nth-child(1){
+				height: 40px;
+				align-self:left;
+				color: white;
+				font-weight: bolder;
+				font-size: 30px;
+				text-shadow:5px 2px 6px #000;
+			}
+			span:nth-child(2){
+				height: 40px;
+				align-self:right;
+				color: white;
+				font-weight: bolder;
+				font-size: 30px;
+				text-shadow:5px 2px 6px #000;
+				padding-right:15px;
+			}
+
+		}
 		.detailAD{
-			height:450px; 
+			height:450px;
 		}
 		ul{
 			display: flex;
@@ -157,11 +236,11 @@ require('swiper/dist/css/swiper.css')
 					display: flex;
 					flex-direction: row;
 					.node_left{
-						width: 20%;
+						width: 40%;
 						padding-top:20px;
 						img{
 							height: 30px;
-							width: 40px;
+							width: 100%;
 							border-radius:50%;
 							overflow: hidden;
 						}
@@ -194,6 +273,7 @@ require('swiper/dist/css/swiper.css')
 				flex-wrap: wrap;
 				span{
 					width: 33.3%;
+					height: 150px;
 				}
 		}
 

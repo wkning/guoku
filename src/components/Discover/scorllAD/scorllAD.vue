@@ -1,6 +1,6 @@
 <template>
 	<div id="scorllAD">
-		<slider animation="fade" style="height:190px">
+		<slider animation="fade" style="height:170px">
 		  <slider-item v-for="(i, index) in banner" :key="index">
 		    <img :src=i.img>
 		  </slider-item>
