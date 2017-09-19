@@ -1,7 +1,9 @@
 <template>
 	<div id="Tabbar">
 		<ul>
-			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)" v-bind:class="{ active: index==selectIndex }" ><span :class=item.icon></span></li>
+			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)">
+				<icon :name=item.name scale="3" id="active"></icon>
+			</li>
 		</ul>
 	</div>
 </template>
@@ -14,22 +16,22 @@
 					{
 						title:'信息',
 						path:'/selection/goods',
-						icon:'icon-star-empty'
+						name:'favorite'
 					},
 					{
 						title:'发现',
 						path:'/discover',
-						icon:'icon-compass2'
+						name:'compass'
 					},
 					{
 						title:'登录',
 						path:'/login',
-						icon:'icon-bell'
+						name:'account'
 					},
 					{
 						title:'设置',
 						path:'/setting',
-						icon:'icon-cog'
+						name:'set'
 					},
 				],
 				selectIndex:'1',
@@ -65,7 +67,7 @@
 			}
 		}
 	}
-	.active{
+	#active:hover{
 		color: red;
 	}
 	@font-face {

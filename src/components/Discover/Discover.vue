@@ -24,11 +24,18 @@
 		},
 		created(){
 			var _this=this;
+			var j=0;
+			var iconNames=["健康险","奶瓶","拼图","笔记本","自行车","眼镜","男装","女装","汉堡包","笔记本1","美容","椅子"];
 			this.$http.get(window.apiAddress+"/api/discover").then(function(response){
 				for(var item of response.data.articles){
 					item.article.cover="http://imgcdn.guoku.com/"+item.article.cover;
 				}
+				for(var i of response.data.categories){
+					i.category.name=iconNames[j];
+					j++;
+				}
 				_this.data=response.data;
+				
 			})
 		},
 	}

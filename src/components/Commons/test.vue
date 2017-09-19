@@ -104,8 +104,7 @@ require('swiper/dist/css/swiper.css')
 		},
 		methods:{
 			turnBack(){
-				console.log(this.detailData)
-				//this.$router.go(-1)
+				this.$router.go(-1)
 			},
 			share(){
 				this.show=true;
@@ -118,7 +117,6 @@ require('swiper/dist/css/swiper.css')
 			detailData:function(state){
 				let localData = window.localStorage.getItem('detailData')
 				if(state.detailData===0&&localData){
-					console.log(1111)
 					this.$store.commit('detailDatas',localData)
 				}
 				return state.detailData;

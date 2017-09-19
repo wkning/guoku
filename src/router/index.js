@@ -10,6 +10,7 @@ import Setting from '@/components/Setting/Setting'
 import Goods from '@/components/Selection/Goods'
 import Picture from '@/components/Selection/Picture'
 import Detail from '@/components/Commons/Detail'
+import navDetail from '@/components/Commons/navDetail'
 
 export default new Router({
   routes: [
@@ -46,6 +47,10 @@ export default new Router({
       {
          path:'/detail',
          component:Detail
+      },
+      {
+         path:'/navdetail',
+         component:navDetail
       }
   ]
 })

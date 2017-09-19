@@ -1,17 +1,35 @@
 <template>
 	<div id="scorllAD">
-		<slider animation="fade" style="height:170px">
-		  <slider-item v-for="(i, index) in banner" :key="index">
-		    <img :src=i.img>
-		  </slider-item>
-		</slider>
+		<swiper :options="swiperOption">
+	        <swiper-slide v-for="(i, index) in banner" :key="index">
+	        	<img :src=i.img>
+	        </swiper-slide>
+	     </swiper>
 	</div>
 </template>
 <script>
-import { Slider, SliderItem } from 'vue-easy-slider'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+require('swiper/dist/css/swiper.css') 
 	export default{
 		props:["banner"],
-		components: {Slider,SliderItem},
+		components: {
+			    swiper,
+			    swiperSlide
+		},
+		data() {
+  	  	return {
+    		swiperOption: {
+    		  pagination: '.swiper-pagination',
+	          nextButton: '.swiper-button-next',
+	          prevButton: '.swiper-button-prev',
+	          paginationClickable: true,
+	          spaceBetween: 100,
+	          centeredSlides: true,
+	          autoplay: 2500,
+	          autoplayDisableOnInteraction: false
+	    	}
+	  	  }
+	  	}	
 
 	}
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div id="hotGoods">
 		<ul>
-			<li v-for="(item,index) in entities" :key="index">
+			<li v-for="(item,index) in entities" :key="index" :class="{line:index%2==0}">
 				<div  @click="detail(item.entity.entity_id)"><img :src=item.entity.chief_image></div>
 				<div>
 					<span>{{item.entity.brand}}</span>
@@ -29,12 +29,16 @@
 
 <style lang="scss" scoped>
 	#hotGoods{
+		.line{
+			border-right:1px solid #D7D5D5;
+		}
 		ul{
 			display: flex;
 			flex-wrap: wrap;
 			li{
 				width: 50%;
 				padding: 10px;
+				border-bottom: 1px solid #D7D5D5;
 				div:nth-child(2){
 					display: flex;
 					flex-direction: column;

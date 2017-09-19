@@ -19,12 +19,12 @@
 </script>
 
 <style lang="scss" scoped>
-	.title{
-		font-weight: bolder;
-		font-size: 19px;
-		padding: 20px 10px;
-	}
 	#hotArtical{
+		.title{
+			font-weight: bolder;
+			font-size: 19px;
+			padding: 20px 10px;
+		}
 		li{
 			display: flex;
 			border-bottom: 1px solid #ededed;

@@ -6,13 +6,15 @@ import axios from 'axios'
 import router from './router'
 import store from './Vuex/Store'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import Icon from 'vue-svg-icon/Icon.vue';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
-Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper);
+Vue.component('icon', Icon);
+
 
 if (true) {
-	// localhost:3000 等价于 127.0.0.1
 	window.apiAddress = "http://127.0.0.1:3000"
 }else{
 	window.apiAddress = "http://120.25.107.16:3000"
@@ -23,5 +25,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: { App,Icon}
 })

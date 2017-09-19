@@ -4,7 +4,15 @@
 			<span @click="close">✘</span>
 		</div>
 		<div class="content">
-			
+				      <!-- swiper -->
+			<swiper :options="swiperOption">
+				<swiper-slide>Slide 1</swiper-slide>
+				<swiper-slide>Slide 2</swiper-slide>
+				<swiper-slide>Slide 3</swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+				<div class="swiper-button-prev" slot="button-prev"></div>
+				<div class="swiper-button-next" slot="button-next"></div>
+			</swiper>
 		</div>
 		<div class="footer">
 			<span>登录</span>
@@ -16,12 +24,31 @@
 	</div>
 </template>
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+require('swiper/dist/css/swiper.css') 
 	export default{
 		methods:{
 			close(){
 				this.$router.go(-1);
 			}
-		}
+		},
+		components: {
+			    swiper,
+			    swiperSlide
+		},
+		data() {
+		      return {
+		        swiperOption: {
+		          pagination: '.swiper-pagination',
+		          nextButton: '.swiper-button-next',
+		          prevButton: '.swiper-button-prev',
+		          slidesPerView: 1,
+		          paginationClickable: true,
+		          spaceBetween: 30,
+		          loop: true
+		        }
+		      }
+		},
 	}
 </script>
 
