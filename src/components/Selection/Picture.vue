@@ -1,4 +1,5 @@
 <template>
+<transition name="fade">
 	<div id="Picture">
 		<ul>
 			 <li v-for="(item,index) in dataList">
@@ -6,13 +7,14 @@
 				<div>{{item.title}}</div>
 				<div>{{item.digest}}...</div>
 				<div>
-					<span>{{item.read_count}}</span>
+					<span><icon name="眼睛" :scale="2"></icon>{{item.read_count}}</span>
 					<span>{{item.pub_time}}</span>
 				</div>
 			</li> 
 		</ul>
 		<div @click="loadMore">加载更多</div>
 	</div>
+	</transition>
 </template>
 <script>
 	export default{
@@ -66,4 +68,17 @@
 			
 		}
 	}
+	.fade-enter-active,.fade-leave-active{
+		  transition: all 0.5s ease-out;
+		}
+		/* 进入开始 */
+		.fade-enter{
+		  transform: translateX(-500px);
+		  opacity: 0;
+		}
+		/* 出去终点 */
+		.fade-leave-active{
+		  transform: translateX(500px);
+		  opacity: 0;
+		}
 </style>

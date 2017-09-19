@@ -11,6 +11,10 @@ import Goods from '@/components/Selection/Goods'
 import Picture from '@/components/Selection/Picture'
 import Detail from '@/components/Commons/Detail'
 import navDetail from '@/components/Commons/navDetail'
+import logins from '@/components/Commons/logins'
+import loginUp from '@/components/Commons/loginUp'
+
+
 
 export default new Router({
   routes: [
@@ -51,7 +55,15 @@ export default new Router({
       {
          path:'/navdetail',
          component:navDetail
-      }
+      },
+      {
+         path:'/logins',
+         component:logins
+      },
+      {
+         path:'/loginUp',
+         component:loginUp
+      },
   ]
 })
 

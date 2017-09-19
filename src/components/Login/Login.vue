@@ -1,4 +1,5 @@
 <template>
+	<transition name="fade">
 	<div id="Login">
 		<div class="header">
 			<span @click="close">✘</span>
@@ -6,30 +7,38 @@
 		<div class="content">
 				      <!-- swiper -->
 			<swiper :options="swiperOption">
-				<swiper-slide>Slide 1</swiper-slide>
-				<swiper-slide>Slide 2</swiper-slide>
-				<swiper-slide>Slide 3</swiper-slide>
+				<swiper-slide v-for="(item,index) in imgUrls" :key="index">
+					<img :src=item.imgUrl>
+				</swiper-slide>
 				<div class="swiper-pagination" slot="pagination"></div>
-				<div class="swiper-button-prev" slot="button-prev"></div>
-				<div class="swiper-button-next" slot="button-next"></div>
 			</swiper>
 		</div>
 		<div class="footer">
-			<span>登录</span>
-			<span>注册</span>
+			<span @click="loginIn">登录</span>
+			<span @click="loginZ">注册</span>
 		</div>
 		<div class="copyright">
 			<span>使用果库,表示你已经同意</span><u>使用协议</u>
 		</div>
 	</div>
+	</transition>
 </template>
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 require('swiper/dist/css/swiper.css') 
+import picture1 from '../../assets/1.jpg'
+import picture2 from '../../assets/2.jpg'
+import picture3 from '../../assets/3.jpg'
 	export default{
 		methods:{
 			close(){
 				this.$router.go(-1);
+			},
+			loginIn(){
+				this.$router.push('/logins')
+			},
+			loginZ(){
+				this.$router.push('/loginUp')
 			}
 		},
 		components: {
@@ -46,7 +55,12 @@ require('swiper/dist/css/swiper.css')
 		          paginationClickable: true,
 		          spaceBetween: 30,
 		          loop: true
-		        }
+		        },
+		        imgUrls:[
+		        	{imgUrl:picture1},
+		        	{imgUrl:picture2},
+		        	{imgUrl:picture3},
+		        ]
 		      }
 		},
 	}
@@ -94,4 +108,17 @@ require('swiper/dist/css/swiper.css')
 			}
 		}
 	}
+	.fade-enter-active,.fade-leave-active{
+		  transition: all 0.5s ease-out;
+		}
+		/* 进入开始 */
+		.fade-enter{
+		  transform: translateY(1000px);
+		  opacity: 0;
+		}
+		/* 出去终点 */
+		.fade-leave-active{
+		  transform: translateY(-500px);
+		  opacity: 0;
+		}
 </style>

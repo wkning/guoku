@@ -1,4 +1,5 @@
 <template>
+	<transition name="fade">
 	<div id="Detail">
 			<div class="turnBack">
 				<span @click="turnBack">＜</span>
@@ -75,6 +76,7 @@
 				</div>
 			</div>	    		
 	</div>
+	</transition>
 </template>	
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -104,8 +106,7 @@ require('swiper/dist/css/swiper.css')
 		},
 		methods:{
 			turnBack(){
-				console.log(this.detailData)
-				//this.$router.go(-1)
+				this.$router.go(-1)
 			},
 			share(){
 				this.show=true;
@@ -127,6 +128,19 @@ require('swiper/dist/css/swiper.css')
 	}
 </script>
 <style lang="scss">
+	.fade-enter-active,.fade-leave-active{
+		  transition: all 0.5s ease-out;
+		}
+		/* 进入开始 */
+		.fade-enter{
+		  transform: translateX(500px);
+		  opacity: 0;
+		}
+		/* 出去终点 */
+		.fade-leave-active{
+		  transform: translateX(500px);
+		  opacity: 0;
+		}
 	#Detail{
 		.bg{			
 			.share{

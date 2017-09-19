@@ -2,7 +2,7 @@
 	<div id="resUser">
 		<div class="title">
 			<a>推荐用户</a>
-			<a>></a>
+			<a> <icon name="右括号" :scale="2"></icon></a>
 		</div>
 		<swiper :options="swiperOption">
 	        <swiper-slide v-for="(item,index) in authorizeduser" :key="index">
