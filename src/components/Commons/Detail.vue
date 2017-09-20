@@ -4,8 +4,9 @@
 			<div class="turnBack">
 				<span @click="turnBack">＜</span>
 				<span @click="share">▫▫▫</span>
+				
 			</div>
-			<swiper :options="swiperOption">
+			 <swiper :options="swiperOption">
 				<swiper-slide v-for="(item,index) in detailList.detail_images" :key="index">
 					<img :src=item>
 				</swiper-slide>
@@ -35,14 +36,14 @@
 					</div>
 					<div>
 						<div class="node_left">
-							<img :src=detailnode[0].creator.avatar_small >
+							<img :src=imgurl >
 						</div>
 						<div class="node_right">
 							<span>
-								{{detailnode[0].creator.nickname}}
+								{{nickname}}
 								<icon name="五角星" scale="1.5" style="float:right; margin-right:20px;"></icon>	
 							</span>
-							<span>{{detailnode[0].content}}</span>
+							<span>{{detailnode.content}}</span>
 							<span>
 								<span>
 									<icon name="点赞" scale="1.5" style="margin-right:10px;"></icon>
@@ -50,7 +51,7 @@
 								</span>
 								<span>
 									<icon name="时间 钟表" scale="1.5" style="margin-top:5px;"></icon>
-									{{detailnode[0].post_time}}
+									{{detailnode.post_time}}
 								</span>
 							</span>
 						</div>
@@ -75,7 +76,7 @@
 					<span @click="showShare">取消</span>
 				</div>
 			</div>	    		
-	</div>
+	</div> 
 	</transition>
 </template>	
 <script>
@@ -89,9 +90,9 @@ require('swiper/dist/css/swiper.css')
 		},
 		data(){
 			return {
-				detailList:this.$store.state.detailData.entity,
-				detailnode:this.$store.state.detailData.note_list,
-				recommendation:this.$store.state.detailData.recommendation,
+				detailList:{},
+				detailnode:"",
+				recommendation:{},
 				show:false,
 				swiperOption: {
 		          pagination: '.swiper-pagination',
@@ -101,8 +102,21 @@ require('swiper/dist/css/swiper.css')
 		          paginationClickable: true,
 		          spaceBetween: 30,
 		          loop: true
-		        }
+		        },
+		        imgurl:"",
+		        nickname:"",
 			}
+		},
+		created(){
+			var _this=this;
+			this.$http.get(window.apiAddress+"/api/entity?id="+this.dataId).then(function(response){
+				_this.detailList=response.data.entity;
+				_this.detailnode=response.data.note_list[0];
+				_this.recommendation=response.data.recommendation;
+				console.log(_this.detailnode)	
+				_this.imgurl=_this.detailnode.creator.avatar_small;
+				_this.nickname=_this.detailnode.creator.nickname;			
+			})
 		},
 		methods:{
 			turnBack(){
@@ -116,31 +130,31 @@ require('swiper/dist/css/swiper.css')
 			}
 		},
 		computed:mapState({
-			detailData:function(state){
-				let localData = window.localStorage.getItem('detailData')
-				if(state.detailData===0&&localData){
-					console.log(1111)
-					this.$store.commit('detailDatas',localData)
+			dataId:function(state){
+				if(state.dataId){
+					this.$store.commit('navTabs',state.dataId)
 				}
-				return state.detailData;
+				let localData = window.localStorage.getItem('dataId')
+				state.dataId=localData
+				return state.dataId;
 			}
 		})
 	}
 </script>
 <style lang="scss">
 	.fade-enter-active,.fade-leave-active{
-		  transition: all 0.5s ease-out;
-		}
+		  transition: all 0.9s linear;
+	}
 		/* 进入开始 */
-		.fade-enter{
-		  transform: translateX(500px);
+	.fade-enter{
+		  transform: translateX(-500px);
 		  opacity: 0;
-		}
+	}
 		/* 出去终点 */
-		.fade-leave-active{
+	.fade-leave-active{
 		  transform: translateX(500px);
 		  opacity: 0;
-		}
+	}
 	#Detail{
 		.bg{			
 			.share{

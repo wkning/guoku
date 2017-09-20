@@ -1,6 +1,6 @@
 <template>
 	<div id="searchBar">
-		<input type="text" placeholder="☆搜索商品,图文">
+		<input type="text" placeholder="搜索商品,图文">
 	</div>
 </template>
 <script>
@@ -20,6 +20,9 @@
 			width: 95%;
 			background-color: #F5F3F3;
 			height: 30px;
+			outline: none;			
 		}
+		input::-ms-input-placeholder{text-align: center;}
+		input::-webkit-input-placeholder{text-align: center;}
 	}
 </style>

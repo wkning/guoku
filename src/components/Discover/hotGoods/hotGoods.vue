@@ -17,11 +17,8 @@
 		props:["entities"],
 		methods:{
 			detail(id){
-				var _this=this;
-				this.$http.get(window.apiAddress+"/api/entity?id="+id).then(function(response){
-				_this.$store.state.detailData=response.data
-				_this.$router.push("/detail")
-				})				
+				this.$store.state.dataId=id;
+				this.$router.push("/detail")				
 			}
 		}
 	}

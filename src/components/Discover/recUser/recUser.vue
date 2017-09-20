@@ -2,7 +2,7 @@
 	<div id="resUser">
 		<div class="title">
 			<a>推荐用户</a>
-			<a> <icon name="右括号" :scale="2"></icon></a>
+			<a @click="push"> <icon name="右括号" :scale="2"></icon></a>
 		</div>
 		<swiper :options="swiperOption">
 	        <swiper-slide v-for="(item,index) in authorizeduser" :key="index">
@@ -34,6 +34,11 @@ require('swiper/dist/css/swiper.css')
 			          freeMode: true
 			        }
 			    }
+		},
+		methods:{
+			push(){
+				this.$router.push('/authorized')
+			}
 		}
 	}
 </script>

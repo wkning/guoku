@@ -2,7 +2,7 @@
 	<div id="Selection">
 		<div class="navBar">
 			<div v-for="(item,index) in selectionList" @click="pushTo(item.path,index)" >
-				<span v-bind:class="{actived:selectIndex==index}">{{item.title}}</span> 
+				<span v-bind:class="{actived:selectIndex==index}"><b>{{item.title}}</b></span> 
 			</div>
 		</div>
 		<keep-alive>
@@ -51,8 +51,7 @@
 			flex: 1;
 			line-height: 64px;
 			text-align: center;
-			font-size: 20px;
-			font-weight:bold;
+			font-size: 16px;
 			span{
 				width: 50px;
 				padding-bottom:5px; 

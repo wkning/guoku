@@ -21,9 +21,9 @@
 <style lang="scss" scoped>
 	#hotArtical{
 		.title{
-			font-weight: bolder;
-			font-size: 19px;
-			padding: 20px 10px;
+			font-weight: bold;
+			font-size: 15px;
+			padding: 15px 10px;
 		}
 		li{
 			display: flex;
@@ -39,12 +39,14 @@
 				flex-direction: column;
 				padding:10px;
 				span:nth-child(1){
-					font-weight: bolder;
-					font-size: 18px;
+					flex: 1;
+					font-weight: bold;
+					font-size: 16px;
 				}
 				span:nth-child(2){
+					flex: 1;
 					color: #999;
-					font-size: 15px;
+					font-size: 13px;
 					text-overflow: -o-ellipsis-lastline;  
 					overflow: hidden;  
 					text-overflow: ellipsis;  

@@ -22,19 +22,9 @@
 		},
 		methods:{
 			navList(id,val){
-				var _this=this;
-				this.$http.get(window.apiAddress+"/api/category?id="+id+"&name=articles").then(function(response){
-				for(var item of response.data.articles){
-					item.cover="http://imgcdn.guoku.com/"+item.cover;
-				}
-				_this.$store.state.titles=val;
-				_this.$store.state.navCategory=response.data.articles;
-				
-				})	
-				this.$http.get(window.apiAddress+"/api/category?id="+id+"&name=selection").then(function(response){
-				_this.$store.state.navSelection=response.data;
-				_this.$router.push("/navdetail")
-				})		
+				this.$store.state.dataId=id;
+				this.$store.state.titles=val;
+				this.$router.push("/navdetail")		
 			}
 		}
 	}

@@ -2,7 +2,9 @@
 	<div id="Tabbar">
 		<ul>
 			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)">
-				<icon :name=item.name scale="3" id="active"></icon>
+				<span :class="{bgColor:index==selectIndex}">
+					<icon :name=item.name scale="3"></icon>
+				</span>
 			</li>
 		</ul>
 	</div>
@@ -67,38 +69,7 @@
 			}
 		}
 	}
-	#active:hover{
-		color: red;
+	.bgColor{
+		color: #05CE7C;
 	}
-	@font-face {
-		  font-family: 'icomoon';
-		  src:url('fonts/icomoon.ttf');
-		  font-weight: normal;
-		  font-style: normal;
-		}
-
-		[class^="icon-"], [class*=" icon-"] {
-		  /* use !important to prevent issues with browser extensions that change fonts */
-		  font-family: 'icomoon' !important;
-		  speak: none;
-		  font-style: normal;
-		  font-weight: normal;
-		  font-variant: normal;
-		  text-transform: none;
-		  line-height: 1;
-		  -webkit-font-smoothing: antialiased;
-		  -moz-osx-font-smoothing: grayscale;
-		}
-		.icon-compass2:before {
-		  content: "\e94a";
-		}
-		.icon-bell:before {
-		  content: "\e951";
-		}
-		.icon-cog:before {
-		  content: "\e994";
-		}
-		.icon-star-empty:before {
-		  content: "\e9d7";
-		}
 </style>

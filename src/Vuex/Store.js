@@ -9,17 +9,17 @@ export default new Vuex.Store({
 		objStyle:'',
 		navSelection:'',
 		navCategory:'',
-		titles:''
+		titles:'',
+		dataId:'',
 	},
 	getters:{
 			
 	},
 	mutations:{
-		detailDatas(state,index){
-			var objStr=JSON.stringify(state.detailData)
-			objStr=index;
-			window.localStorage.setItem('detailData',index)
-		}
+		navTabs(state,index){
+        	state.dataId = index;
+        	window.localStorage.setItem('dataId',index);
+    	}
 	},
 	actions:{
 

@@ -1,4 +1,5 @@
 <template>
+	<transition name="fade">
 	<div id="navDetail">
 		<div class="header">
 			<span @click="backHome" style="padding:5px;"><icon name="左" scale="3"></icon></span>
@@ -6,7 +7,7 @@
 		</div>
 		<div class="hotArtical">
 			<div class="title">
-				热门图文
+				<b style="font-size:15px">图文</b>
 				<span style="float:right; margin-right:10px; color:#999" @click="num=30">更多</span>
 				<span style="float:right; margin-right:10px; color:#999" @click="num=3">收起</span>
 			</div>
@@ -34,14 +35,16 @@
 			</ul>
 		</div>
 	</div>
+	</transition>
 </template>
 <script>
+import {mapState} from 'vuex'
 	export default{
 		data(){
 			return {
 				titles:this.$store.state.titles,
-				entities:this.$store.state.navSelection,
-				articles:this.$store.state.navCategory,
+				entities:{},
+				articles:{},
 				num:3
 			}
 		},
@@ -49,15 +52,53 @@
 			backHome(){
 				this.$router.go(-1);
 			}
-		}
+		},
+		created(){
+			var _this=this;
+			this.$http.get(window.apiAddress+"/api/category?id="+this.dataId+"&name=articles").then(function(response){
+				for(var item of response.data.articles){
+					item.cover="http://imgcdn.guoku.com/"+item.cover;
+					}
+				_this.articles=response.data.articles;
+				console.log(response.data.articles)				
+				})	
+
+			this.$http.get(window.apiAddress+"/api/category?id="+this.dataId+"&name=selection").then(function(response){
+				_this.entities=response.data;
+				console.log(response.data)
+				})
+		},
+		computed:mapState({
+			dataId:function(state){
+				if(state.dataId){
+					this.$store.commit('navTabs',state.dataId)
+				}
+				let localData = window.localStorage.getItem('dataId')
+				state.dataId=localData
+				return state.dataId;
+			}
+		})
 	}
 </script>
 
 <style lang="scss">
+	.fade-enter-active,.fade-leave-active{
+		  transition: all 0.9s ease-out;
+		}
+		/* 进入开始 */
+		.fade-enter{
+		  transform: translateX(-500px);
+		  opacity: 0;
+		}
+		/* 出去终点 */
+		.fade-leave-active{
+		  transform: translateX(500px);
+		  opacity: 0;
+		}
 	#navDetail{
 		.header{
 			height: 40px;
-			border-bottom: 1px solid #ededed;
+			border-bottom: 5px solid #ededed;
 			display: flex;
 			justify-content: space-between;
 			font-weight: bold;
@@ -86,12 +127,14 @@
 					flex-direction: column;
 					padding:10px;
 					span:nth-child(1){
-						font-weight: bolder;
-						font-size: 18px;
+						font-weight: bold;
+						font-size: 16px;
+						flex: 1;
 					}
 					span:nth-child(2){
+						flex: 1;
 						color: #999;
-						font-size: 15px;
+						font-size: 13px;
 						text-overflow: -o-ellipsis-lastline;  
 						overflow: hidden;  
 						text-overflow: ellipsis;  

@@ -13,7 +13,7 @@ import Detail from '@/components/Commons/Detail'
 import navDetail from '@/components/Commons/navDetail'
 import logins from '@/components/Commons/logins'
 import loginUp from '@/components/Commons/loginUp'
-
+import authorized from '@/components/Commons/authorized'
 
 
 export default new Router({
@@ -63,6 +63,10 @@ export default new Router({
       {
          path:'/loginUp',
          component:loginUp
+      },
+      {
+         path:'/authorized',
+         component:authorized
       },
   ]
 })
