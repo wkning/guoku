@@ -25,7 +25,7 @@
 		<div class="Goods">
 			<ul>
 				<li v-for="(item,index) in entities" :key="index" :class="{line:index%2==0}">
-					<div  @click="detail(item.entity.entity_id)"><img :src=item.chief_image></div>
+					<div  @click="detail(item.entity_id)"><img :src=item.chief_image></div>
 					<div>
 						<span>{{item.brand}}</span>
 						<span>{{item.title}}</span>
@@ -51,31 +51,34 @@ import {mapState} from 'vuex'
 		methods:{
 			backHome(){
 				this.$router.go(-1);
+			},
+			detail(id){
+				this.$store.state.dataId=id;
+				this.$router.push("/detail")
 			}
 		},
 		created(){
 			var _this=this;
-			this.$http.get(window.apiAddress+"/api/category?id="+this.dataId+"&name=articles").then(function(response){
+			this.$http.get(window.apiAddress+"/api/category?id="+this.navId+"&name=articles").then(function(response){
 				for(var item of response.data.articles){
 					item.cover="http://imgcdn.guoku.com/"+item.cover;
 					}
-				_this.articles=response.data.articles;
-				console.log(response.data.articles)				
+				_this.articles=response.data.articles;			
 				})	
 
-			this.$http.get(window.apiAddress+"/api/category?id="+this.dataId+"&name=selection").then(function(response){
+			this.$http.get(window.apiAddress+"/api/category?id="+this.navId+"&name=selection").then(function(response){
 				_this.entities=response.data;
-				console.log(response.data)
+				console.log(_this.entities)
 				})
 		},
 		computed:mapState({
-			dataId:function(state){
-				if(state.dataId){
-					this.$store.commit('navTabs',state.dataId)
+			navId:function(state){
+				if(state.navId){
+					this.$store.commit('navTab',state.navId)
 				}
-				let localData = window.localStorage.getItem('dataId')
-				state.dataId=localData
-				return state.dataId;
+				let localData = window.localStorage.getItem('navId')
+				state.navId=localData
+				return state.navId;
 			}
 		})
 	}

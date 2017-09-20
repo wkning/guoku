@@ -34,7 +34,6 @@
 			var _this=this;
 			this.$http.get(window.apiAddress+'/api/selection').then(function(response){
 				_this.dataList=response.data;
-				console.log(_this.dataList)
 			})
 		},
 		methods:{

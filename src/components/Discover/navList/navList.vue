@@ -22,7 +22,7 @@
 		},
 		methods:{
 			navList(id,val){
-				this.$store.state.dataId=id;
+				this.$store.state.navId=id;
 				this.$store.state.titles=val;
 				this.$router.push("/navdetail")		
 			}

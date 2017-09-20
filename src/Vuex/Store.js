@@ -11,6 +11,7 @@ export default new Vuex.Store({
 		navCategory:'',
 		titles:'',
 		dataId:'',
+		navId:''
 	},
 	getters:{
 			
@@ -19,6 +20,10 @@ export default new Vuex.Store({
 		navTabs(state,index){
         	state.dataId = index;
         	window.localStorage.setItem('dataId',index);
+    	},
+    	navTab(state,index){
+        	state.navId = index;
+        	window.localStorage.setItem('navId',index);
     	}
 	},
 	actions:{
