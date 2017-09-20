@@ -23,7 +23,7 @@
 				</li>
 				<li>
 					<span>推荐用户</span>
-					<span>
+					<span @click="pushTo(detailList.entity_id)">
 						{{detailList.like_count}}人喜爱						
 					</span>
 				</li>
@@ -113,7 +113,6 @@ require('swiper/dist/css/swiper.css')
 				_this.detailList=response.data.entity;
 				_this.detailnode=response.data.note_list[0];
 				_this.recommendation=response.data.recommendation;
-				console.log(_this.detailnode)	
 				_this.imgurl=_this.detailnode.creator.avatar_small;
 				_this.nickname=_this.detailnode.creator.nickname;			
 			})
@@ -127,6 +126,10 @@ require('swiper/dist/css/swiper.css')
 			},
 			showShare(){
 				this.show=false;
+			},
+			pushTo(){
+				// this.$store.state.dataId=id;
+				this.$router.push("/like")	
 			}
 		},
 		computed:mapState({

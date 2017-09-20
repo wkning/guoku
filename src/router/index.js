@@ -14,6 +14,7 @@ import navDetail from '@/components/Commons/navDetail'
 import logins from '@/components/Commons/logins'
 import loginUp from '@/components/Commons/loginUp'
 import authorized from '@/components/Commons/authorized'
+import like from '@/components/Commons/like'
 
 
 export default new Router({
@@ -67,6 +68,10 @@ export default new Router({
       {
          path:'/authorized',
          component:authorized
+      },
+      {
+         path:'/like',
+         component:like
       },
   ]
 })
