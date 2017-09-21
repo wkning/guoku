@@ -8,8 +8,8 @@
 		<div class="hotArtical">
 			<div class="title">
 				<b style="font-size:15px">图文</b>
-				<span style="float:right; margin-right:10px; color:#999" @click="num=30">更多</span>
-				<span style="float:right; margin-right:10px; color:#999" @click="num=3">收起</span>
+				<span style="float:right; margin-right:10px; color:#999" @click="num=30">更多↓</span>
+				<span style="float:right; margin-right:10px; color:#999" @click="num=3">收起↑</span>
 			</div>
 			<ul>
 				<li v-for="(item,index) in articles" v-if="index<num">

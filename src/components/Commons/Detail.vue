@@ -24,7 +24,7 @@
 				<li>
 					<span>推荐用户</span>
 					<span @click="pushTo(detailList.entity_id)">
-						{{detailList.like_count}}人喜爱						
+						{{detailList.like_count}}人喜爱 <icon name="右括号" :scale="1.2"></icon>						
 					</span>
 				</li>
 				<li>
