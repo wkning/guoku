@@ -14,7 +14,7 @@
 					</span>
 					<span>
 						<icon name="时间 钟表" :scale="1.2"></icon>
-						{{item.post_time |times}}分钟前
+						{{item.post_time|times}}分钟前
 					</span>
 				</div>
 			</li>
@@ -38,6 +38,7 @@
 		},
 		methods:{
 			pushTo(id){
+				console.log(id)
 				this.$store.state.dataId=id;
 				this.$router.push("/detail")
 			}
@@ -53,7 +54,6 @@
 			}
 		}
 	}
-	//?api_key=0b19c2b93687347e95c6b6f5cc91bb87&page=1
 </script>
 <style lang="scss">
 	#Goods{

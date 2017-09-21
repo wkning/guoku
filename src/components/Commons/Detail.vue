@@ -69,13 +69,54 @@
 					<img :src=item.chief_image>
 				</span>				
 			</div>
+			<transition name="fade1">
 			<div  class="bg" v-if="show">
 				<div class="share" >
-					<span>分享</span>
-					<span>1111</span>
+					<span style="color:#ccc;">————————分享————————</span>
+					<span>
+						<div class="uls">
+							<li>
+								<b><icon name="朋友圈" :scale="3.5"></icon></b>
+								<a>分享</a>
+							</li>
+							<li>
+								<b><icon name="微信" :scale="6"></icon></b>
+								<a>微信</a>
+							</li>
+							<li>
+								<b style="background-color:#FCFCB2;"><icon name="微博" :scale="4"></icon></b>
+								<a>微博</a>
+							</li>
+							<li>
+								<b><icon name="safari" :scale="5"></icon></b>
+								<a>在Safari</a>
+							</li>
+							<li>
+								<b><icon name="邮箱" :scale="7"></icon></b>
+								<a>邮箱</a>
+							</li>							
+						</div>
+						<div class="uls">
+							<li>
+								<b><icon name="刷新" :scale="3"></icon></b>
+								<a>刷新</a>
+							</li>
+							<li>
+								<b style="color:black"><icon name="复制" :scale="3"></icon></b>
+								<a>邮箱</a>
+							</li>	
+							<li>
+								<b><icon name="旗帜" :scale="3"></icon></b>
+								<a>举报</a>
+							</li>
+							<li></li>
+							<li></li>							
+						</div>
+					</span>
 					<span @click="showShare">取消</span>
 				</div>
-			</div>	    		
+			</div>
+			</transition>	    		
 	</div> 
 	</transition>
 </template>	
@@ -128,7 +169,7 @@ require('swiper/dist/css/swiper.css')
 				this.show=false;
 			},
 			pushTo(){
-				// this.$store.state.dataId=id;
+				//this.$store.state.dataId=id;
 				this.$router.push("/like")	
 			}
 		},
@@ -148,14 +189,23 @@ require('swiper/dist/css/swiper.css')
 	.fade-enter-active,.fade-leave-active{
 		  transition: all 0.9s linear;
 	}
-		/* 进入开始 */
 	.fade-enter{
 		  transform: translateX(-500px);
 		  opacity: 0;
 	}
-		/* 出去终点 */
 	.fade-leave-active{
 		  transform: translateX(500px);
+		  opacity: 0;
+	}
+	.fade1-enter-active,.fade1-leave-active{
+		  transition: all 0.9s linear;
+	}
+	.fade1-enter{
+		  transform: translateY(-400px);
+		  opacity: 0;
+	}
+	.fade1-leave-active{
+		  transform: translateY(-400px);
 		  opacity: 0;
 	}
 	#Detail{
@@ -165,7 +215,7 @@ require('swiper/dist/css/swiper.css')
 			bottom:0;
 			left: 0;
 			right: 0;
-			background-color:white;
+			background-color:#F8F8F8;
 			z-index: 3;
 			display: flex;
 			flex-direction: column;
@@ -178,13 +228,42 @@ require('swiper/dist/css/swiper.css')
 					line-height: 50px;
 				}
 				span:nth-child(2){
-					text-align: center;
 					height: 200px;
+					display: flex;
+					flex-direction: column;
+					.uls{
+						flex: 1;
+						display: flex;
+						flex-direction: row;
+						li{
+							width: 20%;
+							display: flex;
+							flex-direction: column;
+							padding:10px;
+							b{
+								background-color:white;
+								width: 50px;
+								height: 50px;
+								border-radius:50%;
+								overflow: hidden;
+								text-align: center;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+							}
+							a{
+								font-size: 12px;
+								text-align: center;
+							}
+						}
+					}
+
 				}
 				span:nth-child(3){
 					text-align: center;
 					height: 50px;
 					line-height: 50px;
+					background-color:#E5E5E5;
 				}
 			}
 		}

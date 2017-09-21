@@ -5,13 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state:{
-		detailData:'',
-		objStyle:'',
-		navSelection:'',
-		navCategory:'',
 		titles:'',
 		dataId:'',
-		navId:''
+		navId:'',
+		selectIndex:''
 	},
 	getters:{
 			
@@ -21,9 +18,13 @@ export default new Vuex.Store({
         	state.dataId = index;
         	window.localStorage.setItem('dataId',index);
     	},
-    	navTab(state,index){
+    	navIds(state,index){
         	state.navId = index;
         	window.localStorage.setItem('navId',index);
+    	},
+    	select(state,index){
+        	state.selectIndex = index;
+        	window.localStorage.setItem('selectIndex',index);
     	}
 	},
 	actions:{

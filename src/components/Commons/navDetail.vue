@@ -68,13 +68,16 @@ import {mapState} from 'vuex'
 
 			this.$http.get(window.apiAddress+"/api/category?id="+this.navId+"&name=selection").then(function(response){
 				_this.entities=response.data;
-				console.log(_this.entities)
 				})
 		},
+
+
+
 		computed:mapState({
 			navId:function(state){
 				if(state.navId){
-					this.$store.commit('navTab',state.navId)
+					console.log("我执行了")
+					this.$store.commit('navIds',state.navId)
 				}
 				let localData = window.localStorage.getItem('navId')
 				state.navId=localData

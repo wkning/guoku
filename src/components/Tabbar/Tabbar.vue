@@ -2,7 +2,7 @@
 	<div id="Tabbar">
 		<ul>
 			<li v-for="(item,index) in tabbarList" @click="pushTo(item.path,index)">
-				<span :class="{bgColor:index==selectIndex}">
+				<span :class="{bgColor:index==(selectIndex-1)}">
 					<icon :name=item.name scale="3"></icon>
 				</span>
 			</li>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 	export default{
 		data(){
 			return {
@@ -36,15 +37,25 @@
 						name:'set'
 					},
 				],
-				selectIndex:'1',
+				
 			}
 		},
 		methods:{
 			pushTo(path,index){
-				this.selectIndex=index
+				this.$store.state.selectIndex=index+1
 				this.$router.push(path);
 			}
-		}
+		},
+		computed:mapState({
+			selectIndex:function(state){
+				if(state.selectIndex){
+					this.$store.commit('select',state.selectIndex)
+				}
+				let localData = window.localStorage.getItem('selectIndex')
+				state.navId=localData
+				return state.navId;
+			}
+		})
 	}
 </script>
 
@@ -56,7 +67,7 @@
 		right: 0;
 		height: 44px;
 		border-top: 1px solid #D7D6D6;
-		opacity: 0.9;
+		
 		background-color: #fff;
 		z-index: 1;
 		ul{
